@@ -67,12 +67,17 @@ const file = async (url, fd) => {
 
 
 const get_test = () => get("http://localhost:3000/api/tests/first_test")
-const register_user_post = async (object) => post("http://localhost:3000/api/user/register", object)
 const confirm_account = async (token) => get("http://localhost:3000/api/user/confirm?token=" + token)
+const get_photos = () => get("")
+
+const register_user_post = async (object) => post("http://localhost:3000/api/user/register", object)
 const postDataAndToken = (object) => post("http://localhost:3000/api/authtoken", object, token)
+const login_user = (login_info) => post("http://localhost:3000/api/user/login", login_info)
+
 export {
     get_test,
     register_user_post,
     confirm_account,
-    postDataAndToken
+    postDataAndToken,
+    login_user
 }

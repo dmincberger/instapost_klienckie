@@ -8,11 +8,11 @@ import AboutView from '@/views/AboutView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import ConfirmView from '@/views/ConfirmView.vue'
 import LoginView from '@/views/LoginView.vue'
+import DashboardView from '@/views/DashboardView.vue'
 
 //lazy load - renderuje się tylko gdy jest potrzebny a nie z góry
 
 const NotFoundView = () => import("@/views/NotFoundView.vue")
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,8 +44,13 @@ const router = createRouter({
     },
     {
       path: '/login',
-      name: 'name',
+      name: 'confirm',
       component: LoginView
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: DashboardView
     }
   ]
 })

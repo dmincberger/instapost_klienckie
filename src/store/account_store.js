@@ -1,6 +1,6 @@
-import { get_test, register_user_post, confirm_account } from "@/api"
+import { get_test, register_user_post, confirm_account, login_user } from "@/api"
 
-const tests = {
+const account_store = {
 
     //state
     state() {
@@ -8,7 +8,7 @@ const tests = {
             test_list: [],
             test_loading: false,
             test_error: null,
-            token: null,
+            auth_token: null,
         }
     },
 
@@ -17,8 +17,8 @@ const tests = {
         SET_TEST_LIST(state, new_test) {
             state.test_list = new_test
         },
-        SET_TOKEN(state, new_token) {
-            state.token = new_token
+        SET_TOKEN(state, new_auth_token) {
+            state.auth_token = new_auth_token
         },
     },
 
@@ -30,6 +30,9 @@ const tests = {
         GET_CONFIRMATION_LINK(state) {
             console.log("ZWRACANE: " + state.confirm_link);
             return state.confirm_link
+        },
+        GET_AUTH_TOKEN(state) {
+            return state.auth_token
         }
     },
 
@@ -57,18 +60,23 @@ const tests = {
         },
 
         async LOGIN_USER({ state, commit }, login_info) {
-
+            const data = await login_user(login_info)
+            console.log("LOGIN ODP STORE: " + data);
+            if (data["JWT"] != undefined) {
+                commit("SET_TOKEN", data["JWT"])
+            }
+            return data
         },
 
         async CONFIRM_ACCOUNT({ state, commit }, token) {
             const data = await confirm_account(token)
             console.log(data);
             return data
-        }
+        },
 
 
     }
 
 }
 
-export default tests
+export default account_store
