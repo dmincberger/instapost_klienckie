@@ -1,4 +1,4 @@
-import { get_test, register_user_post, confirm_account, login_user } from "@/api"
+import { register_user_post, confirm_account, login_user, logout_user } from "@/api"
 
 const account_store = {
 
@@ -18,15 +18,13 @@ const account_store = {
             state.test_list = new_test
         },
         SET_TOKEN(state, new_auth_token) {
+            console.log(new_auth_token + "KOG");
             state.auth_token = new_auth_token
         },
     },
 
     //getters
     getters: {
-        GET_TEST_LIST(state) {
-            return state.test_list
-        },
         GET_CONFIRMATION_LINK(state) {
             console.log("ZWRACANE: " + state.confirm_link);
             return state.confirm_link
@@ -38,18 +36,16 @@ const account_store = {
 
     // tu zapytania do serwera z pomocą naszego api
     actions: {
-        async FETCH_TEST({ state, commit }) {
 
-            // najpierw ustawiamy stan ładowania na true
 
-            // potem wywołujemy funkcję z api, która
-            // odbiera dane z serwera (poprzez axios) i ustawia listę cars w store
-            // w razie błędu ustawia error w store (catch)
-            // niezależnie od błędu lub jego braku (finally), kończy loading
-            const data = await get_test()
-            console.log("axios", data);
-            commit("SET_TEST_LIST", data)
-        },
+        // najpierw ustawiamy stan ładowania na true
+
+        // potem wywołujemy funkcję z api, która
+        // odbiera dane z serwera (poprzez axios) i ustawia listę cars w store
+        // w razie błędu ustawia error w store (catch)
+        // niezależnie od błędu lub jego braku (finally), kończy loading
+
+
 
         async REGISTER_USER({ state, commit }, register_info) {
             console.log("TO JEST INFO: " + JSON.stringify(register_info));
@@ -63,6 +59,7 @@ const account_store = {
             const data = await login_user(login_info)
             console.log("LOGIN ODP STORE: " + data);
             if (data["JWT"] != undefined) {
+                console.log("CO");
                 commit("SET_TOKEN", data["JWT"])
             }
             return data
@@ -74,6 +71,19 @@ const account_store = {
             return data
         },
 
+        async LOGOUT_USER({ state, commit }) {
+            let token = state.auth_token
+            const data = await logout_user(token)
+            console.log(data);
+
+            if (data == "success" || data == "expired") {
+                commit("SET_TOKEN", null)
+                console.log(token);
+                return data
+            } else {
+                return "error: " + data
+            }
+        }
 
     }
 

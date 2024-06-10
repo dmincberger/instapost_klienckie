@@ -12,6 +12,7 @@
         },
         async created(){
             let token = window.location.href.split("=")[1]
+            console.log(token);
             let data = await this.$store.dispatch("CONFIRM_ACCOUNT",token)
             console.log("DATA W VUE: "+JSON.stringify(data));
             this.confirmation_message = data
