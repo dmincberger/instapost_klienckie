@@ -1,0 +1,64 @@
+Instapost — dokumentacja projektu (frontend)
+============================================
+
+Czym jest projekt
+-----------------
+Klient Vue 3 aplikacji do udostępniania zdjęć (Instapost).
+Użytkownik może się zarejestrować, potwierdzić konto, logować,
+przeglądać feed, zarządzać profilem, dodawać i edytować zdjęcia
+(z filtrami i tagami).
+
+
+Stack
+-----
+- Vue 3 + Vite
+- Vue Router
+- Vuex (+ persisted state)
+- Axios
+- PrimeVue 3 (Button, InputText, Carousel, Tag, …)
+- PrimeIcons
+
+
+Uruchomienie
+------------
+1. npm install
+2. npm run dev        — tryb deweloperski
+3. npm run build      — build produkcyjny
+4. npm run preview    — podgląd builda
+
+Backend API (domyślnie): http://localhost:3000
+
+
+Główne ścieżki
+--------------
+/                 — landing
+/login            — logowanie
+/register         — rejestracja
+/confirm          — potwierdzenie konta (token w URL)
+/dashboard        — feed zdjęć
+/profile          — profil zalogowanego użytkownika
+/editProfile      — edycja danych i avatara
+/edit             — edycja wybranego zdjęcia
+/user/:email      — publiczny profil użytkownika
+/logout           — wylogowanie
+*                 — 404
+
+
+Struktura (skrót)
+-----------------
+src/
+  assets/         — style globalne (base.css, main.css)
+  components/     — Navbar, karuzela, upload, zdjęcia profilu itd.
+  views/          — strony odpowiadające routom
+  store/          — Vuex (auth, zdjęcia, profil)
+  router/         — definicje tras
+  App.vue         — root (RouterView)
+  main.js         — bootstrap aplikacji + rejestracja PrimeVue
+
+
+Uwagi
+-----
+- Wygląd oparty o wspólny design system w CSS variables.
+- Komponenty korzystają z klas globalnych (.page-shell, .auth-card,
+  .photo-grid) oraz stylów scoped w widokach.
+- Endpointy obrazów: /api/getimage/:id na backendzie.

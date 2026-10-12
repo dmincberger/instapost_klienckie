@@ -1,0 +1,71 @@
+Zmiany w wyglądzie frontendu — Instapost
+========================================
+
+Cel
+---
+Odświeżenie UI bez zmiany logiki aplikacji (API, Vuex, routing, formularze).
+
+
+Design system
+-------------
+- Nowa paleta: atramentowy tekst (#14181f), chłodne tło w odcieniach mgły,
+  koralowy akcent (#e24b3b)
+- Fonty: Syne (nagłówki / brand) + Figtree (tekst UI)
+- Zmienne CSS (--ink, --accent, --paper, --radius itd.) w base.css
+- Subtelne animacje: fade-up, fade-in, soft-float
+- Lekka ziarnistość i gradienty zamiast płaskiego darkslategrey
+
+
+Strona główna
+-------------
+- Landing z silnym brandem „Instapost”
+- Krótki opis, CTA (Dołącz / Zaloguj)
+- Dekoracyjne kadry ze zdjęciami-abstrakcjami z delikatnym ruchem
+
+
+Logowanie i rejestracja
+-----------------------
+- Formularze w białych kartach na środku ekranu
+- Spójne pola, przyciski i komunikaty błędów/sukcesu
+- Linki między login ↔ register
+- Polskie etykiety UI
+
+
+Nawigacja
+---------
+- Stały topbar z blurrem zamiast surowego MenuBar
+- Brand + Feed / Profil / Wyloguj
+- Responsywne: na mobile tylko ikony
+
+
+Feed (Dashboard)
+----------------
+- Nagłówek sekcji + karuzela w lekkim „stage”
+- Karty zdjęć z zaokrągleniem i lepszym kadrowaniem (object-fit)
+
+
+Profil
+------
+- Sekcja hero: avatar + opis + link „Edytuj profil”
+- Upload zdjęć w panelu z filtrami i przyciskiem wysyłki
+- Galeria w siatce (photo-grid) z hoverem
+
+
+Edycja zdjęcia / profilu
+------------------------
+- Layout dwukolumnowy (podgląd + panel tagów/filtrów)
+- Formularz edycji profilu wyśrodkowany, avatar klikalny
+- Navbar też na stronach edycji
+
+
+Inne widoki
+-----------
+- 404 i potwierdzenie konta w stylu kart auth
+- Publiczny profil użytkownika: hero + siatka zdjęć
+- Tytuł strony w index.html: „Instapost”
+
+
+Technicznie
+-----------
+- Zmiany głównie w: assets (base.css, main.css), views/*, components/*
+- Logika JS (store, API, handlery) bez zmian funkcjonalnych
