@@ -1,34 +1,40 @@
 <script setup>
 </script>
 <template>
-    <div>
-        <img :src="image" class="profile_picture">
-    </div>
+  <div class="avatar-wrap">
+    <img :src="image" class="profile_picture" alt="Zdjęcie użytkownika" />
+  </div>
 </template>
 
 <script>
-
- export default {
-    name: "ProfilePicture",
-    data(){
-        return {
-            image:null,
-            show_edit:null,
-            email:null
-        }
-    },
-    async created(){
-    //         this.image = await this.$store.dispatch("FETCH_PROFILE_PICTURE")
-        this.email = this.$route.params.email
-        let object = {"email":this.email}
-            this.image = await this.$store.dispatch("FETCH_USER_PROFILE_PICTURE",object)
-    }
- }
+export default {
+  name: "ProfilePicture",
+  data() {
+    return {
+      image: null,
+      show_edit: null,
+      email: null,
+    };
+  },
+  async created() {
+    this.email = this.$route.params.email;
+    let object = { email: this.email };
+    this.image = await this.$store.dispatch(
+      "FETCH_USER_PROFILE_PICTURE",
+      object
+    );
+  },
+};
 </script>
 
 <style scoped>
-.profile_picture{
-    clip-path: circle(50% at 50% 50%);
-    width: 100px;
+.profile_picture {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: var(--shadow-soft);
+  background: var(--mist);
 }
 </style>

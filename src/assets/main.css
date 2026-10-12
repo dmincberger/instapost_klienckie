@@ -1,1 +1,39 @@
 @import './base.css';
+
+/* PrimeVue / layout polish */
+.p-menubar {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.p-carousel .p-carousel-content {
+  padding: 0.5rem 0;
+}
+
+.p-carousel .p-carousel-item {
+  padding: 0.5rem;
+}
+
+.p-carousel .p-carousel-prev,
+.p-carousel .p-carousel-next {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid var(--line) !important;
+  color: var(--ink) !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  box-shadow: var(--shadow-soft);
+}
+
+.p-tag {
+  background: var(--ink) !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+  margin: 0.2rem !important;
+  cursor: pointer;
+  transition: background 0.2s var(--ease-out);
+}
+
+.p-tag:hover {
+  background: var(--accent) !important;
+}
